@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Wireframe – Figma Style</title>
+    <style>
+        /* ============================================================
+       FIGMA WIREFRAME TOKENS
+       Primary canvas colour  : #F0F2F5
+       Frame/border colour    : #333333
+       Fill (dark)            : #2C2C2C
+       Fill (mid)             : #8C8C8C
+       Fill (light)           : #D9D9D9
+       Accent (yellow)        : #FFC107
+       Accent (blue-link)     : #1A73E8
+       Text (dark)            : #1E1E1E
+       Text (label)           : #6B6B6B
+    ============================================================ */
+
+        :root {
+            --canvas: #F0F2F5;
+            --frame: #333333;
+            --fill-dark: #2C2C2C;
+            --fill-mid: #8C8C8C;
+            --fill-light: #D9D9D9;
+            --accent-y: #FFC107;
+            --accent-b: #1A73E8;
+            --text-dark: #1E1E1E;
+            --text-label: #6B6B6B;
+            --radius: 8px;
+            --stroke: 1.5px;
+            --font: 'Inter', 'Segoe UI', sans-serif;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--canvas);
+            font-family: var(--font);
+            color: var(--text-dark);
+            padding: 48px 32px;
+        }
+
+        /* ── FIGMA LEGEND ── */
+        .legend {
+            background: #fff;
+            border: var(--stroke) solid var(--frame);
+            border-radius: var(--radius);
+            padding: 16px 24px;
+            margin-bottom: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            align-items: center;
+        }
+
+        .legend-title {
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: .5px;
+            color: var(--text-label);
+            text-transform: uppercase;
+            margin-right: 12px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: var(--text-label);
+        }
+
+        .swatch {
+            width: 14px;
+            height: 14px;
+            border-radius: 3px;
+            border: var(--stroke) solid var(--frame);
+            flex-shrink: 0;
+        }
+
+        /* ── PAGE LABEL ── */
+        .page-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-label);
+            margin-bottom: 8px;
+        }
+
+        /* ── MASTER FRAME ── */
+        .figma-frame {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            border: var(--stroke) solid var(--frame);
+            border-radius: 12px;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, .10);
+        }
+
+        /* ── GLOBAL NAV ── */
+        .wf-nav {
+            background: var(--fill-dark);
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            border-bottom: var(--stroke) solid var(--frame);
+        }
+
+        .wf-nav .logo-box {
+            width: 120px;
+            height: 32px;
+            background: var(--fill-mid);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .wf-nav .logo-box span {
+            font-size: 11px;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .wf-nav .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .wf-nav .nav-links a {
+            font-size: 13px;
+            color: var(--fill-light);
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: .3px;
+        }
+
+        .wf-nav .nav-links a.active {
+            color: var(--accent-y);
+            border-bottom: 2px solid var(--accent-y);
+            padding-bottom: 2px;
+        }
+
+        /* ── SECTION WRAPPER ── */
+        .wf-section {
+            border-bottom: var(--stroke) solid var(--fill-light);
+            padding: 56px 64px;
+            position: relative;
+        }
+
+        .wf-section:last-of-type {
+            border-bottom: none;
+        }
+
+        /* Section label badge ─ top-left */
+        .section-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: var(--fill-dark);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+
+        /* Section heading ─ used inside each section */
+        .wf-section-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .wf-section-underline {
+            width: 48px;
+            height: 4px;
+            background: var(--accent-y);
+            border-radius: 2px;
+            margin-bottom: 40px;
+        }
+
+        /* ── ANNOTATION annotation ── */
+        .annotation {
+            font-size: 11px;
+            color: var(--text-label);
+            font-style: italic;
+            margin-top: 8px;
+        }
+
+        /* ── RED DOT (Figma constraint marker) ── */
+        .constraint {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 10px;
+            color: #E53935;
+            font-weight: 600;
+        }
+
+        .constraint::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #E53935;
+            display: inline-block;
+        }
+
+        /* ════════════════════════════════════════
+       01 – HERO SECTION
+    ════════════════════════════════════════ */
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        /* Left – Profile image column */
+        .hero-image-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .profile-circle-outer {
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            background: var(--accent-y);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            overflow: hidden;
+            border: var(--stroke) dashed var(--frame);
+            position: relative;
+        }
+
+        .profile-silhouette {
+            width: 180px;
+            height: 220px;
+            background: var(--fill-mid);
+            border-radius: 90px 90px 0 0;
+            position: absolute;
+            bottom: 0;
+        }
+
+        .profile-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 10px;
+            font-weight: 600;
+            color: #fff;
+            text-align: center;
+            line-height: 1.4;
+            z-index: 2;
+        }
+
+        .image-annotations {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            width: 260px;
+        }
+
+        .img-ann-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            color: var(--text-label);
+        }
+
+        .img-ann-item::before {
+            content: '→';
+            color: var(--accent-b);
+            font-weight: 700;
+        }
+
+        /* Right – Objective text column */
+        .hero-text-col {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .text-placeholder {
+            background: var(--fill-light);
+            border-radius: 4px;
+            height: 14px;
+            width: 100%;
+        }
+
+        .text-placeholder.short {
+            width: 60%;
+        }
+
+        .text-placeholder.medium {
+            width: 80%;
+        }
+
+        .text-placeholder.name {
+            width: 55%;
+            height: 36px;
+            background: var(--fill-dark);
+            border-radius: 6px;
+        }
+
+        .text-placeholder.role {
+            width: 70%;
+            height: 20px;
+            background: var(--fill-mid);
+            border-radius: 4px;
+        }
+
+        .text-block {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .cta-row {
+            display: flex;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .btn-primary {
+            padding: 12px 28px;
+            background: var(--fill-dark);
+            color: #fff;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            border: var(--stroke) solid var(--frame);
+            cursor: pointer;
+        }
+
+        .btn-outline {
+            padding: 12px 28px;
+            background: transparent;
+            color: var(--text-dark);
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            border: var(--stroke) solid var(--frame);
+            cursor: pointer;
+        }
+
+        /* ════════════════════════════════════════
+       02 – EXPERIENCE SECTION
+    ════════════════════════════════════════ */
+        .exp-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .exp-card {
+            border: var(--stroke) solid var(--fill-dark);
+            border-radius: var(--radius);
+            padding: 24px;
+            background: var(--canvas);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .exp-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .exp-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: var(--fill-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .exp-icon span {
+            color: #fff;
+            font-size: 18px;
+        }
+
+        .exp-card-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .exp-card-date {
+            font-size: 11px;
+            color: var(--text-label);
+        }
+
+        .exp-lines {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-top: 6px;
+        }
+
+        .exp-line {
+            background: var(--fill-light);
+            border-radius: 3px;
+            height: 10px;
+            width: 100%;
+        }
+
+        .exp-line.s {
+            width: 70%;
+        }
+
+        /* ════════════════════════════════════════
+       03 – SKILLS SECTION
+    ════════════════════════════════════════ */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        .skill-card {
+            border: 2px solid var(--fill-dark);
+            border-radius: 12px;
+            padding: 32px;
+            background: var(--canvas);
+            cursor: pointer;
+            transition: box-shadow .2s;
+            position: relative;
+        }
+
+        .skill-card-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .skill-icon-box {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background: var(--fill-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        .skill-card-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .skill-card-sub {
+            font-size: 12px;
+            color: var(--text-label);
+            margin-top: 2px;
+        }
+
+        .skill-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .pill {
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            background: var(--fill-light);
+            color: var(--text-dark);
+            border: var(--stroke) solid var(--fill-mid);
+        }
+
+        /* Expanded-state overlay annotation */
+        .expand-note {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--accent-y);
+            border-radius: 20px;
+            padding: 3px 10px;
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--fill-dark);
+        }
+
+        /* click interaction arrow */
+        .interaction-arrow {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .arrow-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 11px;
+            color: var(--text-label);
+        }
+
+        .arrow-box .arrow-svg {
+            display: flex;
+            align-items: center;
+        }
+
+        /* ════════════════════════════════════════
+       04 – PROJECTS SECTION
+    ════════════════════════════════════════ */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .proj-card {
+            border: var(--stroke) solid var(--fill-dark);
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: var(--canvas);
+        }
+
+        .proj-thumbnail {
+            width: 100%;
+            height: 140px;
+            background: repeating-linear-gradient(45deg,
+                    var(--fill-light),
+                    var(--fill-light) 10px,
+                    #e8e8e8 10px,
+                    #e8e8e8 20px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: var(--stroke) solid var(--fill-mid);
+        }
+
+        .proj-thumbnail span {
+            font-size: 11px;
+            color: var(--text-label);
+            font-weight: 600;
+        }
+
+        .proj-body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .proj-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .proj-desc-lines {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .proj-desc-line {
+            background: var(--fill-light);
+            border-radius: 3px;
+            height: 10px;
+            width: 100%;
+        }
+
+        .proj-desc-line.s {
+            width: 65%;
+        }
+
+        .proj-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent-b);
+            text-decoration: none;
+            margin-top: 4px;
+        }
+
+        /* ════════════════════════════════════════
+       05 – CONTACT SECTION
+    ════════════════════════════════════════ */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: start;
+        }
+
+        /* Left – Illustration placeholder */
+        .contact-illus {
+            width: 100%;
+            aspect-ratio: 4/3;
+            border: var(--stroke) dashed var(--frame);
+            border-radius: 12px;
+            background: var(--canvas);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .illus-icon {
+            font-size: 52px;
+        }
+
+        .illus-text {
+            font-size: 12px;
+            color: var(--text-label);
+            font-weight: 600;
+        }
+
+        /* Right – Form */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .field-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .field-input {
+            height: 44px;
+            border: var(--stroke) solid var(--fill-mid);
+            border-radius: 6px;
+            background: #fff;
+            padding: 0 14px;
+            font-size: 12px;
+            color: var(--text-label);
+            display: flex;
+            align-items: center;
+        }
+
+        .field-submit {
+            height: 48px;
+            background: var(--fill-dark);
+            border: none;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .field-submit-note {
+            font-size: 11px;
+            color: var(--text-label);
+            text-align: center;
+        }
+
+        /* ── FOOTER ── */
+        .wf-footer {
+            background: var(--fill-dark);
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-top: var(--stroke) solid var(--frame);
+        }
+
+        .wf-footer span {
+            font-size: 12px;
+            color: var(--fill-mid);
+        }
+
+        /* ── SPACING RULER (Figma red lines) ── */
+        .spacing-note {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 10px;
+            color: #E53935;
+            font-weight: 600;
+            margin-top: 12px;
+        }
+
+        .spacing-note::before {
+            content: '';
+            width: 24px;
+            height: 1px;
+            background: #E53935;
+        }
+
+        .spacing-note::after {
+            content: '';
+            width: 24px;
+            height: 1px;
+            background: #E53935;
+        }
+
+        /* ════════════════════════════════════════
+       RESPONSIVE ANNOTATIONS PANEL
+    ════════════════════════════════════════ */
+        .responsive-panel {
+            max-width: 1280px;
+            margin: 40px auto 0;
+            background: #fff;
+            border: var(--stroke) solid var(--frame);
+            border-radius: 12px;
+            padding: 32px 40px;
+        }
+
+        .rp-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .rp-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .rp-card {
+            border: var(--stroke) solid var(--fill-mid);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+            background: var(--canvas);
+        }
+
+        .rp-card .breakpoint {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .rp-card .bp-range {
+            font-size: 11px;
+            color: var(--text-label);
+            margin-bottom: 10px;
+        }
+
+        .rp-card .bp-screen {
+            width: 100%;
+            aspect-ratio: 3/2;
+            background: var(--fill-light);
+            border-radius: 4px;
+            border: var(--stroke) solid var(--fill-mid);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            font-size: 10px;
+            color: var(--text-label);
+            padding-bottom: 6px;
+        }
+
+        .rp-card .bp-screen.mobile {
+            aspect-ratio: 9/16;
+        }
+
+        .rp-card .bp-screen.tablet {
+            aspect-ratio: 3/4;
+        }
+
+        .rp-card .bp-screen.laptop {
+            aspect-ratio: 16/10;
+        }
+
+        .rp-card .bp-screen.desktop {
+            aspect-ratio: 21/9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ══════════════════════════════════════
+       WIREFRAME META
+  ══════════════════════════════════════ -->
+    <div class="legend">
+        <span class="legend-title">🎨 Figma Wireframe Legend</span>
+        <div class="legend-item">
+            <div class="swatch" style="background:#2C2C2C"></div> Dark Fill – Primary UI
+        </div>
+        <div class="legend-item">
+            <div class="swatch" style="background:#8C8C8C"></div> Mid Fill – Secondary / Placeholder
+        </div>
+        <div class="legend-item">
+            <div class="swatch" style="background:#D9D9D9"></div> Light Fill – Skeleton Text
+        </div>
+        <div class="legend-item">
+            <div class="swatch" style="background:#FFC107"></div> Accent Yellow – Highlights & CTA
+        </div>
+        <div class="legend-item">
+            <div class="swatch" style="background:#1A73E8"></div> Accent Blue – Links
+        </div>
+        <div class="legend-item">
+            <div class="swatch" style="background:#F0F2F5"></div> Canvas – Page Background
+        </div>
+        <div class="legend-item"><span style="color:#E53935;font-weight:700;font-size:13px">⬤</span> Red – Constraints /
+            Spacing</div>
+        <div class="legend-item"><span style="color:#E53935;font-weight:700;font-size:13px">···</span> Dashed –
+            Responsive Container</div>
+    </div>
+
+    <p class="page-label">📄 Page 1 / 1 — Desktop (1280px) — Portfolio Website Wireframe</p>
+
+    <!-- ══════════════════════════════════════
+       FIGMA MASTER FRAME
+  ══════════════════════════════════════ -->
+    <div class="figma-frame">
+
+        <!-- ── GLOBAL NAV (dark, matches hero) ── -->
+        <nav class="wf-nav">
+            <div class="logo-box">
+                <div class="logo-icon">🔮</div>
+                <span>Your Name</span>
+            </div>
+            <div class="nav-links">
+                <a href="#">Home ▾</a>
+                <a href="#">About Me</a>
+                <a href="#">Portfolio</a>
+                <a href="#">Contact Me</a>
+                <a href="#">Pages ▾</a>
+                <button class="nav-cta">About Me</button>
+            </div>
+        </nav>
+
+        <!-- ══════════════════════════════════════
+             01 – HERO SECTION  (OPPA-style dark)
+        ══════════════════════════════════════ -->
+        <section class="hero-section">
+            <span class="section-badge" style="top:12px;left:12px;z-index:10;">01 — Hero (Home)</span>
+
+            <!-- LEFT: Text Content -->
+            <div class="hero-text">
+                <div class="hero-greeting">Hi there, I am</div>
+                <div class="hero-name">[Your Full Name]</div>
+                <div class="hero-role">[Job Title / Role]</div>
+                <div class="hero-para">
+                    <div class="hero-para-line"></div>
+                    <div class="hero-para-line"></div>
+                    <div class="hero-para-line s"></div>
+                </div>
+                <p class="hero-ann">↑ Resume-style objective paragraph (professional summary)</p>
+                <div class="hero-cta">
+                    <button class="btn-hero-fill">Contact Me</button>
+                    <button class="btn-hero-outline">Download CV</button>
+                </div>
+                <div class="constraint" style="color:rgba(255,100,100,.8);margin-top:8px;">Text left-aligned —
+                    vertically centered in section</div>
+                <div class="spacing-note" style="color:rgba(255,100,100,.7);">Section min-height: 520px | Padding: 60px
+                    56px</div>
+            </div>
+
+            <!-- RIGHT: Blobs + Person Cutout -->
+            <div class="hero-blobs">
+                <!-- Large red-orange primary blob (background layer) -->
+                <div class="blob-main"></div>
+                <!-- Green accent blob (top-right) -->
+                <div class="blob-green"></div>
+                <!-- Yellow accent blob (bottom-right) -->
+                <div class="blob-yellow"></div>
+                <!-- Person silhouette: stands IN FRONT of blobs, z-index 3 -->
+                <div class="hero-person">
+                    <div class="person-head"></div>
+                    <div class="person-silhouette">
+                        <div class="person-label">Profile Photo<br>(BG Removed)<br>Stands over blobs</div>
+                    </div>
+                </div>
+                <div style="position:absolute;bottom:8px;left:0;right:0;text-align:center;">
+                    <span style="font-size:10px;color:rgba(255,255,255,.35);font-style:italic;">↑ Real photo, BG removed
+                        — placed over blob layer (z-index: 3)</span>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ══════════════════════════════════════
+         02 – EXPERIENCE SECTION
+    ══════════════════════════════════════ -->
+        <section class="wf-section">
+            <span class="section-badge">02 — Experience</span>
+
+            <div class="wf-section-title">Experience</div>
+            <div class="wf-section-underline"></div>
+
+            <div class="exp-grid">
+
+                <div class="exp-card">
+                    <div class="exp-card-header">
+                        <div class="exp-icon"><span>💼</span></div>
+                        <div>
+                            <div class="exp-card-title">Role Title — Company</div>
+                            <div class="exp-card-date">MM/YYYY – MM/YYYY</div>
+                        </div>
+                    </div>
+                    <div class="exp-lines">
+                        <div class="exp-line"></div>
+                        <div class="exp-line s"></div>
+                        <div class="exp-line"></div>
+                        <div class="exp-line s"></div>
+                    </div>
+                    <p class="annotation">Key responsibilities / activities managed</p>
+                </div>
+
+                <div class="exp-card">
+                    <div class="exp-card-header">
+                        <div class="exp-icon"><span>🏥</span></div>
+                        <div>
+                            <div class="exp-card-title">Role Title — Company</div>
+                            <div class="exp-card-date">MM/YYYY – MM/YYYY</div>
+                        </div>
+                    </div>
+                    <div class="exp-lines">
+                        <div class="exp-line"></div>
+                        <div class="exp-line s"></div>
+                        <div class="exp-line"></div>
+                        <div class="exp-line s"></div>
+                    </div>
+                    <p class="annotation">Key responsibilities / activities managed</p>
+                </div>
+
+                <div class="exp-card">
+                    <div class="exp-card-header">
+                        <div class="exp-icon"><span>🎓</span></div>
+                        <div>
+                            <div class="exp-card-title">Education / Certification</div>
+                            <div class="exp-card-date">YYYY</div>
+                        </div>
+                    </div>
+                    <div class="exp-lines">
+                        <div class="exp-line"></div>
+                        <div class="exp-line s"></div>
+                        <div class="exp-line"></div>
+                    </div>
+                    <p class="annotation">Qualification + institution</p>
+                </div>
+
+            </div>
+
+            <p class="annotation" style="margin-top:16px;">↑ 3-column grid — easy to scan — recruiter-friendly layout
+            </p>
+            <div class="spacing-note">Card gap: 24px | Section padding: 56px</div>
+        </section>
+
+        <!-- ══════════════════════════════════════
+         03 – SKILLS SECTION
+    ══════════════════════════════════════ -->
+        <section class="wf-section" style="background: #FAFAFA;">
+            <span class="section-badge">03 — Skills</span>
+
+            <div class="wf-section-title">Skills</div>
+            <div class="wf-section-underline"></div>
+
+            <div class="skills-grid">
+
+                <!-- Pharma Skills Card -->
+                <div class="skill-card">
+                    <span class="expand-note">Click → Expand</span>
+                    <div class="skill-card-header">
+                        <div class="skill-icon-box">💊</div>
+                        <div>
+                            <div class="skill-card-title">Pharma Skills</div>
+                            <div class="skill-card-sub">Click to expand / zoom for full detail</div>
+                        </div>
+                    </div>
+                    <div class="skill-pills">
+                        <span class="pill">Drug Regulatory Affairs</span>
+                        <span class="pill">Quality Assurance</span>
+                        <span class="pill">Clinical Trials</span>
+                        <span class="pill">Pharmacovigilance</span>
+                        <span class="pill">GMP / GCP</span>
+                        <span class="pill">Placeholder Skill</span>
+                    </div>
+                    <p class="annotation" style="margin-top:14px;">↑ On click: card expands, text enlarges, full skill
+                        detail shown</p>
+                </div>
+
+                <!-- IT Skills Card -->
+                <div class="skill-card">
+                    <span class="expand-note">Click → Expand</span>
+                    <div class="skill-card-header">
+                        <div class="skill-icon-box">💻</div>
+                        <div>
+                            <div class="skill-card-title">IT Skills</div>
+                            <div class="skill-card-sub">Click to expand / zoom for full detail</div>
+                        </div>
+                    </div>
+                    <div class="skill-pills">
+                        <span class="pill">HTML / CSS</span>
+                        <span class="pill">JavaScript</span>
+                        <span class="pill">Angular</span>
+                        <span class="pill">Spring Boot</span>
+                        <span class="pill">REST APIs</span>
+                        <span class="pill">SQL / MySQL</span>
+                        <span class="pill">Git / GitHub</span>
+                    </div>
+                    <p class="annotation" style="margin-top:14px;">↑ Same expand interaction as Pharma card (keyboard +
+                        mobile friendly)</p>
+                </div>
+
+            </div>
+
+            <!-- Interaction annotation row -->
+            <div class="interaction-arrow">
+                <div class="arrow-box">
+                    <span>Default State</span>
+                    <span style="font-size:18px; color:var(--fill-mid)">─▶</span>
+                    <span>Clicked / Focused State (expanded, larger text)</span>
+                </div>
+                <div class="constraint">Keyboard + mobile accessible</div>
+            </div>
+            <div class="spacing-note">Card gap: 32px | Pill gap: 8px</div>
+        </section>
+
+        <!-- ══════════════════════════════════════
+         04 – PROJECTS SECTION
+    ══════════════════════════════════════ -->
+        <section class="wf-section">
+            <span class="section-badge">04 — Projects</span>
+
+            <div class="wf-section-title">Projects</div>
+            <div class="wf-section-underline"></div>
+
+            <div class="projects-grid">
+
+                <div class="proj-card">
+                    <div class="proj-thumbnail"><span>Project Thumbnail / Screenshot</span></div>
+                    <div class="proj-body">
+                        <div class="proj-title">Project Title 1</div>
+                        <div class="proj-desc-lines">
+                            <div class="proj-desc-line"></div>
+                            <div class="proj-desc-line"></div>
+                            <div class="proj-desc-line s"></div>
+                        </div>
+                        <a class="proj-link" href="#">🔗 GitHub Repository</a>
+                    </div>
+                </div>
+
+                <div class="proj-card">
+                    <div class="proj-thumbnail"><span>Project Thumbnail / Screenshot</span></div>
+                    <div class="proj-body">
+                        <div class="proj-title">Project Title 2</div>
+                        <div class="proj-desc-lines">
+                            <div class="proj-desc-line"></div>
+                            <div class="proj-desc-line"></div>
+                            <div class="proj-desc-line s"></div>
+                        </div>
+                        <a class="proj-link" href="#">🔗 GitHub Repository</a>
+                    </div>
+                </div>
+
+                <div class="proj-card">
+                    <div class="proj-thumbnail"><span>Project Thumbnail / Screenshot</span></div>
+                    <div class="proj-body">
+                        <div class="proj-title">Project Title 3</div>
+                        <div class="proj-desc-lines">
+                            <div class="proj-desc-line"></div>
+                            <div class="proj-desc-line"></div>
+                            <div class="proj-desc-line s"></div>
+                        </div>
+                        <a class="proj-link" href="#">🔗 GitHub Repository</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <p class="annotation" style="margin-top:16px;">↑ Uniform card size — 3-column grid — each card: Title +
+                Description + GitHub link</p>
+            <div class="spacing-note">Card gap: 24px | Thumbnail height: 140px</div>
+        </section>
+
+        <!-- ══════════════════════════════════════
+         05 – CONTACT SECTION
+    ══════════════════════════════════════ -->
+        <section class="wf-section" style="background: #FAFAFA;">
+            <span class="section-badge">05 — Contact</span>
+
+            <div class="wf-section-title">Contact</div>
+            <div class="wf-section-underline"></div>
+
+            <div class="contact-grid">
+
+                <!-- Left: Illustration -->
+                <div>
+                    <div class="contact-illus">
+                        <div class="illus-icon">✉️</div>
+                        <div class="illus-text">Contact Illustration<br>/ Relevant Image</div>
+                        <p class="annotation">Replace with real illustration or SVG</p>
+                    </div>
+                    <div class="constraint" style="margin-top:12px;">Image responsive — no distortion</div>
+                </div>
+
+                <!-- Right: Form -->
+                <div>
+                    <div class="contact-form">
+                        <div class="form-field">
+                            <div class="field-label">Name <span style="color:#E53935">*</span></div>
+                            <div class="field-input" style="color:#bbb;">Enter your full name</div>
+                        </div>
+                        <div class="form-field">
+                            <div class="field-label">Email <span style="color:#E53935">*</span></div>
+                            <div class="field-input" style="color:#bbb;">Enter your email address</div>
+                        </div>
+                        <div class="form-field">
+                            <div class="field-label">Contact Number <span style="color:#E53935">*</span></div>
+                            <div class="field-input" style="color:#bbb;">Enter your phone number</div>
+                        </div>
+                        <button class="field-submit">Submit →</button>
+                        <div class="field-submit-note">
+                            ℹ️ On submit: email triggered to user with contact details + professional quote<br>
+                            ✅ Success confirmation shown in UI after submission
+                        </div>
+                    </div>
+                    <div class="spacing-note" style="margin-top:16px;">Field height: 44px | Gap between fields: 18px
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ── FOOTER ── -->
+        <footer class="wf-footer">
+            <span>© 2024 — [Your Name] — All rights reserved</span>
+        </footer>
+
+    </div><!-- /figma-frame -->
+
+    <!-- ══════════════════════════════════════
+       RESPONSIVE BREAKPOINTS PANEL
+  ══════════════════════════════════════ -->
+    <div class="responsive-panel">
+        <div class="rp-title">📐 Responsive Breakpoints (Figma Constraints)</div>
+        <div class="rp-grid">
+            <div class="rp-card">
+                <div class="breakpoint">📱 Mobile</div>
+                <div class="bp-range">≤ 480px</div>
+                <div class="bp-screen mobile">Single-column stack</div>
+            </div>
+            <div class="rp-card">
+                <div class="breakpoint">📟 Tablet</div>
+                <div class="bp-range">481px – 768px</div>
+                <div class="bp-screen tablet">2-col / 1-col mix</div>
+            </div>
+            <div class="rp-card">
+                <div class="breakpoint">💻 Laptop</div>
+                <div class="bp-range">769px – 1024px</div>
+                <div class="bp-screen laptop">2-col layout</div>
+            </div>
+            <div class="rp-card">
+                <div class="breakpoint">🖥️ Desktop</div>
+                <div class="bp-range">≥ 1280px</div>
+                <div class="bp-screen desktop">Full layout (wireframe above)</div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
